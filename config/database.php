@@ -98,6 +98,23 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'pgsql_direct' => [
+            'driver' => 'pgsql',
+            // Neon's direct (unpooled) endpoint. Schema migrations fail through the PgBouncer
+            // pooler, so ops migrations use this connection; requests use the pooled one.
+            'url' => env('DATABASE_URL_UNPOOLED', env('POSTGRES_URL_NON_POOLING', env('DB_URL', env('DATABASE_URL')))),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'laravel'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => env('DB_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),

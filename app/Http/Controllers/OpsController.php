@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Serverless hosts (Vercel) have no shell, queue worker or scheduler. These endpoints run the
@@ -35,12 +36,26 @@ class OpsController extends Controller
 
     private function runMigrations(): array
     {
-        Artisan::call('migrate', ['--force' => true]);
-        $migrate = trim(Artisan::output());
-        // Idempotent: seeds the baseline block and any missing starter questionnaires.
-        Artisan::call('db:seed', ['--force' => true]);
+        $connection = config('database.default') === 'pgsql' ? 'pgsql_direct' : config('database.default');
 
-        return ['migrate' => $migrate, 'seed' => trim(Artisan::output())];
+        // Keep the last few statements so a failure shows what actually ran before it.
+        $recent = [];
+        DB::connection($connection)->beforeExecuting(function (string $sql) use (&$recent) {
+            $recent[] = mb_substr($sql, 0, 160);
+            $recent = array_slice($recent, -4);
+        });
+
+        try {
+            Artisan::call('migrate', ['--force' => true, '--database' => $connection]);
+            $migrate = trim(Artisan::output());
+            // Idempotent: seeds the baseline block and any missing starter questionnaires.
+            Artisan::call('db:seed', ['--force' => true, '--database' => $connection]);
+        } catch (\Throwable $e) {
+            error_log('HQ-MIGRATE failed on '.$connection.'; last statements: '.implode(' || ', $recent));
+            throw $e;
+        }
+
+        return ['connection' => $connection, 'migrate' => $migrate, 'seed' => trim(Artisan::output())];
     }
 
     private function authorise(Request $request): void
