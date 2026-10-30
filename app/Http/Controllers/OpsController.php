@@ -15,7 +15,9 @@ class OpsController extends Controller
     public function daily(Request $request)
     {
         $this->authorise($request);
-        $out = [];
+        // Migrations first (a no-op when up to date), so the "Run" button on the Vercel
+        // Cron Jobs page also sets up a fresh database without needing a terminal.
+        $out = $this->runMigrations();
         foreach (['hexaqualify:expire', 'hexaqualify:remind', 'hexaqualify:purge'] as $command) {
             Artisan::call($command);
             $out[$command] = trim(Artisan::output());
@@ -27,12 +29,18 @@ class OpsController extends Controller
     public function migrate(Request $request)
     {
         $this->authorise($request);
+
+        return response()->json($this->runMigrations());
+    }
+
+    private function runMigrations(): array
+    {
         Artisan::call('migrate', ['--force' => true]);
         $migrate = trim(Artisan::output());
         // Idempotent: seeds the baseline block and any missing starter questionnaires.
         Artisan::call('db:seed', ['--force' => true]);
 
-        return response()->json(['migrate' => $migrate, 'seed' => trim(Artisan::output())]);
+        return ['migrate' => $migrate, 'seed' => trim(Artisan::output())];
     }
 
     private function authorise(Request $request): void

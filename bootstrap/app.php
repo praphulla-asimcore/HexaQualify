@@ -8,6 +8,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,6 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
+        // Outside the web group: no session, cookies, CSRF or cache-backed throttling, so these
+        // still work on a fresh database before the sessions and cache tables exist.
+        then: fn () => Route::group([], base_path('routes/ops.php')),
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->trustProxies(at: '*');
@@ -26,7 +30,6 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->alias(['role' => EnsureRole::class]);
         $middleware->redirectGuestsTo(fn () => route('login'));
-        $middleware->validateCsrfTokens(except: ['ops/*']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Friendly Inertia error pages instead of the framework's HTML pages.

@@ -6,6 +6,7 @@ use App\Models\Invitation;
 use App\Models\Questionnaire;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
 use Laravel\Socialite\Facades\Socialite;
 
 beforeEach(fn () => Mail::fake());
@@ -168,4 +169,10 @@ it('hides ops endpoints unless the cron secret is presented', function () {
 
     config(['hexaqualify.cron_secret' => null]);
     $this->get('/ops/cron/daily', ['Authorization' => 'Bearer '])->assertNotFound();
+});
+
+it('serves ops endpoints without touching sessions, so migrate works on an empty database', function () {
+    config(['hexaqualify.cron_secret' => str_repeat('s', 40), 'session.driver' => 'database']);
+    Schema::drop('sessions');
+    $this->post('/ops/migrate', [], ['Authorization' => 'Bearer '.str_repeat('s', 40)])->assertOk()->assertJsonStructure(['migrate', 'seed']);
 });
