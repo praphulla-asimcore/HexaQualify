@@ -32,6 +32,18 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo(fn () => route('login'));
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        // Serverless log viewers (Vercel) truncate long records, which cuts off the message of a
+        // full stack trace. Log errors as one short line instead.
+        if (env('LOG_CHANNEL') === 'stderr') {
+            $exceptions->report(function (Throwable $e) {
+                $frames = collect($e->getTrace())->take(6)
+                    ->map(fn ($f) => str_replace(base_path().'/', '', ($f['file'] ?? '?').':'.($f['line'] ?? '?')))
+                    ->implode(' < ');
+                error_log(sprintf('HQ-ERROR %s: %s @ %s:%d | %s', $e::class, mb_substr($e->getMessage(), 0, 600),
+                    str_replace(base_path().'/', '', $e->getFile()), $e->getLine(), $frames));
+            })->stop();
+        }
+
         // Friendly Inertia error pages instead of the framework's HTML pages.
         $exceptions->respond(function (Response $response, Throwable $e, Request $request) {
             $status = $response->getStatusCode();
