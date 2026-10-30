@@ -1,0 +1,150 @@
+@import '@fontsource/sora/600.css';
+@import '@fontsource/sora/700.css';
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply font-sans text-ink antialiased;
+    background: var(--bg-base);
+    min-height: 100vh;
+    font-variant-numeric: tabular-nums;
+  }
+  h1, h2, h3 { font-family: Sora, system-ui, sans-serif; letter-spacing: -0.01em; }
+  :focus-visible { outline: 2px solid var(--hexa-accent); outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: var(--brand-tint-strong); }
+}
+
+/* ---------- Aurora background (§10.3) ---------- */
+.aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--bg-base); pointer-events: none; }
+.aurora__blob { position: absolute; border-radius: 50%; filter: blur(90px); will-change: transform; animation: aurora-drift 80s ease-in-out infinite alternate; }
+.aurora__blob--1 { width: 60vmax; height: 60vmax; left: -18vmax; top: -22vmax; background: radial-gradient(circle, var(--bg-blob-1), transparent 65%); }
+.aurora__blob--2 { width: 55vmax; height: 55vmax; right: -20vmax; top: 18vh; background: radial-gradient(circle, var(--bg-blob-2), transparent 65%); animation-duration: 90s; animation-delay: -30s; }
+.aurora__blob--3 { width: 62vmax; height: 62vmax; left: 15vw; bottom: -36vmax; background: radial-gradient(circle, var(--bg-blob-3), transparent 65%); animation-duration: 70s; animation-delay: -12s; }
+.aurora__grain { position: absolute; inset: 0; opacity: .03; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@keyframes aurora-drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(4vw, 3vh, 0) scale(1.06); }
+  100% { transform: translate3d(-3vw, -2vh, 0) scale(.97); }
+}
+
+/* ---------- Glass (§10.3) ---------- */
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+    border-radius: var(--radius-lg);
+  }
+  .glass-strong { background: var(--glass-bg-strong); }
+  /* Solid variant for surfaces nested inside glass: never nest backdrop-filter. */
+  .panel {
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+  }
+
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap px-4 text-sm font-semibold;
+    border-radius: 12px;
+    transition: filter .18s ease-out, box-shadow .18s ease-out, background-color .18s ease-out, transform .18s ease-out;
+  }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+  .btn-primary { background: var(--hexa-gradient); color: var(--text-on-brand); box-shadow: 0 6px 18px rgba(106, 16, 205, .28); }
+  .btn-primary:hover:not(:disabled) { filter: brightness(1.06); }
+  .btn-secondary { background: var(--glass-bg-strong); color: var(--text); border: 1px solid var(--hexa-accent); }
+  .btn-secondary:hover:not(:disabled) { background: var(--brand-tint-strong); }
+  .btn-ghost { color: var(--text); }
+  .btn-ghost:hover:not(:disabled) { background: var(--brand-tint); }
+  .btn-danger { background: transparent; color: var(--not-qualified); border: 1px solid var(--not-qualified); }
+  .btn-danger:hover:not(:disabled) { background: var(--not-qualified-bg); }
+  .btn-sm { @apply min-h-[36px] px-3 text-xs; border-radius: 10px; }
+
+  .field {
+    @apply block w-full min-h-[44px] px-3 py-2 text-[15px] text-ink;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    transition: border-color .15s ease-out, box-shadow .15s ease-out;
+  }
+  .field::placeholder { color: var(--text-muted); opacity: .8; }
+  .field:focus { outline: none; border-color: var(--hexa-accent); box-shadow: 0 0 0 3px var(--brand-tint-strong); }
+  .field[aria-invalid="true"] { border-color: var(--not-qualified); }
+  select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%237a74a0' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px; }
+  .label { @apply mb-1 block text-sm font-medium text-ink; }
+  .hint { @apply mt-1 text-xs text-ink-muted; }
+  .error { @apply mt-1 text-xs font-medium; color: var(--not-qualified); }
+
+  .chip {
+    @apply inline-flex min-h-[44px] cursor-pointer items-center gap-2 px-4 py-2 text-sm font-medium text-ink;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: background-color .18s ease-out, border-color .18s ease-out;
+  }
+  .chip:hover { border-color: var(--hexa-accent); }
+  .chip[data-selected="true"] { background: var(--brand-tint-strong); border-color: var(--hexa-accent); }
+  .chip:has(input:focus-visible) { outline: 2px solid var(--hexa-accent); outline-offset: 2px; }
+
+  .badge { @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-semibold; }
+  .badge::before { content: ''; @apply h-1.5 w-1.5 rounded-full; background: currentColor; }
+  .badge-pass { background: var(--qualified-bg); color: var(--qualified); }
+  .badge-fail { background: var(--not-qualified-bg); color: var(--not-qualified); }
+  .badge-review { background: var(--review-bg); color: var(--review); }
+  .badge-neutral { background: var(--brand-tint); color: var(--text-muted); }
+
+  .table-glass { @apply w-full text-left text-sm; border-collapse: separate; border-spacing: 0; }
+  .table-glass thead th { @apply sticky top-0 z-[1] px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted; background: var(--glass-bg-strong); border-bottom: 1px solid var(--line); }
+  .table-glass tbody td { @apply px-4 py-3 align-middle; border-bottom: 1px solid var(--line); }
+  .table-glass tbody tr { transition: background-color .15s ease-out; }
+  .table-glass tbody tr:hover { background: var(--brand-tint); }
+  .table-glass tbody tr:last-child td { border-bottom: 0; }
+
+  .rise { animation: rise .24s ease-out both; }
+  .lift { transition: transform .2s ease-out, box-shadow .2s ease-out; }
+  .lift:hover { transform: translateY(-2px); box-shadow: var(--glass-shadow-hover), inset 0 1px 0 var(--glass-highlight); }
+  .logo-plate { background: var(--logo-plate); border-radius: 10px; }
+  .brand-line { height: 2px; background: var(--hexa-gradient); border-radius: 2px; }
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Fallbacks: solid surfaces when blur/transparency is unsupported or reduced. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: var(--glass-bg-strong); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass { background: var(--glass-bg-strong); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+:root[data-transparency="reduce"] .glass { background: var(--glass-bg-strong); backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora__blob { animation: none; }
+  .rise, .lift, .btn, .chip { animation: none !important; transition: none !important; }
+  .lift:hover { transform: none; }
+}
+
+/* On phones the glass blur drops to 12px. */
+@media (max-width: 640px) {
+  :root { --glass-blur: 12px; }
+  .aurora__blob { filter: blur(60px); }
+}
+
+/* Inertia-free page progress indicator (no inline styles, CSP-safe). */
+.page-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; background: var(--hexa-gradient); transform-origin: left; animation: progress 1.2s ease-out infinite; }
+@keyframes progress { from { transform: scaleX(.05); } to { transform: scaleX(.9); } }
+
+@media print {
+  .aurora, nav, .no-print { display: none !important; }
+  .glass { background: #fff; box-shadow: none; backdrop-filter: none; border-color: #ddd; }
+}

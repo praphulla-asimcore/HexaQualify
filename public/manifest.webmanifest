@@ -1,0 +1,13 @@
+{
+  "name": "HexaQualify",
+  "short_name": "HexaQualify",
+  "description": "Pre-pitch vendor screening",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F3F1FB",
+  "theme_color": "#6A10CD",
+  "icons": [
+    { "src": "/brand/favicon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/brand/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

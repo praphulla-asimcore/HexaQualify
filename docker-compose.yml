@@ -1,0 +1,23 @@
+# Local/staging stack: app, queue worker + scheduler, Postgres 16, Redis.
+services:
+  app:
+    build: .
+    env_file: .env
+    ports: ['8080:8080']
+    depends_on: [postgres, redis]
+  worker:
+    build: .
+    env_file: .env
+    command: sh -c "php artisan schedule:work & php artisan queue:work --tries=3 --max-time=3600"
+    depends_on: [postgres, redis]
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: hexaqualify
+      POSTGRES_USER: hexaqualify
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secret}
+    volumes: [pgdata:/var/lib/postgresql/data]
+  redis:
+    image: redis:7-alpine
+volumes:
+  pgdata:

@@ -1,0 +1,1421 @@
+{
+ "forms": {
+  "hrms-payroll": {
+   "name": "HR & payroll software",
+   "category": "Software – HR & payroll",
+   "description": "HRMS, payroll, attendance and employee self-service platforms.",
+   "sections": [
+    {
+     "title": "Company and integrity",
+     "questions": [
+      {
+       "id": "c1",
+       "text": "Is your company registered in Nepal with a valid PAN/VAT number?",
+       "type": "yesno",
+       "help": "Foreign vendors: answer for your contracting entity and explain below.",
+       "required": true
+      },
+      {
+       "id": "c2",
+       "text": "Can you provide your latest tax clearance certificate on request?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c3",
+       "text": "How many years has your company been operating?",
+       "type": "number",
+       "unit": "years",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c4",
+       "text": "How many active clients of similar size do you serve in Nepal?",
+       "type": "choice",
+       "options": [
+        "None",
+        "1–4",
+        "5–19",
+        "20 or more"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c5",
+       "text": "Can you share at least two client references we may contact?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c6",
+       "text": "Has your company faced litigation, blacklisting or regulatory action in the last 3 years?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c7",
+       "text": "Will you sign Hexamatics' NDA before receiving any confidential information?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c8",
+       "text": "Do you have an anti-bribery and conflict-of-interest policy, and will you declare any relationship with Hexamatics staff?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c9",
+       "text": "Briefly describe what you offer and why it fits Hexamatics.",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Nepal statutory compliance",
+     "questions": [
+      {
+       "id": "h1",
+       "text": "Does the system calculate salary TDS per the current Finance Act, including SSF-contributor treatment?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h2",
+       "text": "Does it produce the e-TDS upload file for the IRD taxpayer portal by employee PAN?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h3",
+       "text": "Does it handle SSF (11% employee, 20% employer) and produce the monthly SSF contribution file?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h4",
+       "text": "Are Labour Act 2074 items (gratuity, leave encashment, overtime, festival allowance, final settlement) computed automatically?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h5",
+       "text": "Do you claim any IRD certification or approval for this payroll product?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h6",
+       "text": "How are annual statutory changes delivered?",
+       "type": "choice",
+       "options": [
+        "Included in subscription, before new fiscal year",
+        "Included, but after the fiscal year starts",
+        "Charged separately",
+        "Client configures manually"
+       ],
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Data privacy and residency",
+     "questions": [
+      {
+       "id": "h7",
+       "text": "Where is our data hosted?",
+       "type": "choice",
+       "options": [
+        "In Nepal",
+        "Outside Nepal, region named in contract",
+        "Not specified"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h8",
+       "text": "Will you sign a data processing agreement aligned with the Individual Privacy Act 2075?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h9",
+       "text": "Can we export all our data in a usable format at any time and on exit, at no charge?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h10",
+       "text": "Is any of our data used to train AI models or shared with sub-processors without notice?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Cybersecurity",
+     "questions": [
+      {
+       "id": "h11",
+       "text": "Which independent security assurance do you hold?",
+       "type": "choice",
+       "options": [
+        "ISO 27001 or SOC 2 Type II",
+        "Third-party penetration test in last 12 months",
+        "Internal testing only",
+        "None"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h12",
+       "text": "Is data encrypted in transit (TLS 1.2+) and at rest?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h13",
+       "text": "Can MFA be enforced for all admin and payroll users?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h14",
+       "text": "Is there a full audit trail of salary and bank-detail changes, views and exports?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h15",
+       "text": "Breach notification time to customers",
+       "type": "number",
+       "unit": "hours",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h16",
+       "text": "Committed uptime SLA",
+       "type": "number",
+       "unit": "%",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Commercials",
+     "questions": [
+      {
+       "id": "h17",
+       "text": "Is your pricing all-inclusive (implementation, migration, training, statutory updates) in writing?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h18",
+       "text": "Minimum contract term",
+       "type": "number",
+       "unit": "months",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "h19",
+       "text": "Will you run a parallel payroll on our anonymised data before we commit?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "order": 0,
+   "version": 1
+  },
+  "it-saas": {
+   "name": "IT, cloud & SaaS",
+   "category": "Software – IT, cloud & SaaS",
+   "description": "Any software, cloud hosting, IT managed service or SaaS tool that stores or processes Hexamatics data.",
+   "sections": [
+    {
+     "title": "Company and integrity",
+     "questions": [
+      {
+       "id": "c1",
+       "text": "Is your company registered in Nepal with a valid PAN/VAT number?",
+       "type": "yesno",
+       "help": "Foreign vendors: answer for your contracting entity and explain below.",
+       "required": true
+      },
+      {
+       "id": "c2",
+       "text": "Can you provide your latest tax clearance certificate on request?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c3",
+       "text": "How many years has your company been operating?",
+       "type": "number",
+       "unit": "years",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c4",
+       "text": "How many active clients of similar size do you serve in Nepal?",
+       "type": "choice",
+       "options": [
+        "None",
+        "1–4",
+        "5–19",
+        "20 or more"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c5",
+       "text": "Can you share at least two client references we may contact?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c6",
+       "text": "Has your company faced litigation, blacklisting or regulatory action in the last 3 years?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c7",
+       "text": "Will you sign Hexamatics' NDA before receiving any confidential information?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c8",
+       "text": "Do you have an anti-bribery and conflict-of-interest policy, and will you declare any relationship with Hexamatics staff?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c9",
+       "text": "Briefly describe what you offer and why it fits Hexamatics.",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Security assurance",
+     "questions": [
+      {
+       "id": "i1",
+       "text": "Which independent security assurance do you hold?",
+       "type": "choice",
+       "options": [
+        "ISO 27001 or SOC 2 Type II",
+        "Third-party penetration test in last 12 months",
+        "Internal testing only",
+        "None"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i2",
+       "text": "Is data encrypted in transit and at rest, including backups?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i3",
+       "text": "Do you support SSO (Google Workspace / Microsoft 365) and enforceable MFA?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i4",
+       "text": "Is role-based access with a tamper-evident audit log available?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i5",
+       "text": "Breach notification time to customers",
+       "type": "number",
+       "unit": "hours",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i6",
+       "text": "Have you had a security incident affecting customer data in the last 3 years?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Data handling",
+     "questions": [
+      {
+       "id": "i7",
+       "text": "Where is customer data hosted?",
+       "type": "choice",
+       "options": [
+        "In Nepal",
+        "Outside Nepal, region named in contract",
+        "Not specified"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i8",
+       "text": "Is your data centre or cloud provider listed with Nepal's Department of Information Technology (Data Center and Cloud Service Directives 2081)?",
+       "type": "yesno",
+       "help": "Answer 'no' if hosted outside Nepal.",
+       "required": true
+      },
+      {
+       "id": "i9",
+       "text": "Will you sign a data processing agreement and publish your sub-processor list?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i10",
+       "text": "Can we export all data on demand and receive certified deletion on exit?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Service levels",
+     "questions": [
+      {
+       "id": "i11",
+       "text": "Committed uptime SLA",
+       "type": "number",
+       "unit": "%",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i12",
+       "text": "Recovery time objective (RTO)",
+       "type": "number",
+       "unit": "hours",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i13",
+       "text": "Support coverage",
+       "type": "choice",
+       "options": [
+        "24/7 with named escalation",
+        "Business hours, Nepal time",
+        "Email only"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "i14",
+       "text": "Describe how the product integrates with our existing systems (accounting, HR, Google Workspace).",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "order": 1,
+   "version": 1
+  },
+  "professional": {
+   "name": "Professional services",
+   "category": "Professional services",
+   "description": "Audit, tax, legal, company secretarial, consulting and advisory firms.",
+   "sections": [
+    {
+     "title": "Company and integrity",
+     "questions": [
+      {
+       "id": "c1",
+       "text": "Is your company registered in Nepal with a valid PAN/VAT number?",
+       "type": "yesno",
+       "help": "Foreign vendors: answer for your contracting entity and explain below.",
+       "required": true
+      },
+      {
+       "id": "c2",
+       "text": "Can you provide your latest tax clearance certificate on request?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c3",
+       "text": "How many years has your company been operating?",
+       "type": "number",
+       "unit": "years",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c4",
+       "text": "How many active clients of similar size do you serve in Nepal?",
+       "type": "choice",
+       "options": [
+        "None",
+        "1–4",
+        "5–19",
+        "20 or more"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c5",
+       "text": "Can you share at least two client references we may contact?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c6",
+       "text": "Has your company faced litigation, blacklisting or regulatory action in the last 3 years?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c7",
+       "text": "Will you sign Hexamatics' NDA before receiving any confidential information?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c8",
+       "text": "Do you have an anti-bribery and conflict-of-interest policy, and will you declare any relationship with Hexamatics staff?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c9",
+       "text": "Briefly describe what you offer and why it fits Hexamatics.",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Licensing and independence",
+     "questions": [
+      {
+       "id": "p1",
+       "text": "Do the engagement partner and firm hold the licence required for this service (e.g. ICAN, Nepal Bar Council, OCR)?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "p2",
+       "text": "Do you hold professional indemnity insurance?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "p3",
+       "text": "Have you completed a conflict and independence check against Hexamatics Group entities?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "p4",
+       "text": "Has any partner or the firm faced disciplinary action from a professional body in the last 5 years?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Capability",
+     "questions": [
+      {
+       "id": "p5",
+       "text": "Years of experience of the proposed engagement lead",
+       "type": "number",
+       "unit": "years",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "p6",
+       "text": "Do you have cross-border experience (Malaysia, Singapore, Indonesia or Bangladesh)?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "p7",
+       "text": "Name the proposed team, their qualifications and comparable engagements.",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Confidentiality and commercials",
+     "questions": [
+      {
+       "id": "p8",
+       "text": "Will client data be kept on firm-controlled systems with access limited to the engagement team?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "p9",
+       "text": "Fee basis",
+       "type": "choice",
+       "options": [
+        "Fixed fee with defined scope",
+        "Capped time-and-materials",
+        "Uncapped time-and-materials"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "p10",
+       "text": "Standard turnaround for routine queries",
+       "type": "number",
+       "unit": "working days",
+       "help": "",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "order": 2,
+   "version": 1
+  },
+  "facilities": {
+   "name": "Facilities & supplies",
+   "category": "Facilities & general supplies",
+   "description": "Office supplies, IT hardware, maintenance, cleaning, security, catering and transport.",
+   "sections": [
+    {
+     "title": "Company and integrity",
+     "questions": [
+      {
+       "id": "c1",
+       "text": "Is your company registered in Nepal with a valid PAN/VAT number?",
+       "type": "yesno",
+       "help": "Foreign vendors: answer for your contracting entity and explain below.",
+       "required": true
+      },
+      {
+       "id": "c2",
+       "text": "Can you provide your latest tax clearance certificate on request?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c3",
+       "text": "How many years has your company been operating?",
+       "type": "number",
+       "unit": "years",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c4",
+       "text": "How many active clients of similar size do you serve in Nepal?",
+       "type": "choice",
+       "options": [
+        "None",
+        "1–4",
+        "5–19",
+        "20 or more"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c5",
+       "text": "Can you share at least two client references we may contact?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c6",
+       "text": "Has your company faced litigation, blacklisting or regulatory action in the last 3 years?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c7",
+       "text": "Will you sign Hexamatics' NDA before receiving any confidential information?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c8",
+       "text": "Do you have an anti-bribery and conflict-of-interest policy, and will you declare any relationship with Hexamatics staff?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c9",
+       "text": "Briefly describe what you offer and why it fits Hexamatics.",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Compliance and quality",
+     "questions": [
+      {
+       "id": "f1",
+       "text": "Do you issue VAT invoices from IRD-approved billing software (CBMS-connected where required)?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "f2",
+       "text": "Do you hold a quality, safety or environmental certification (e.g. ISO 9001, ISO 45001)?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "f3",
+       "text": "For on-site staff: do you provide accident insurance and follow Labour Act 2074 wage and SSF obligations?",
+       "type": "yesno",
+       "help": "Answer 'yes' if you supply goods only and have no on-site staff.",
+       "required": true
+      },
+      {
+       "id": "f4",
+       "text": "Do you offer a written warranty or service guarantee?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Delivery and commercials",
+     "questions": [
+      {
+       "id": "f5",
+       "text": "Standard delivery or response lead time",
+       "type": "number",
+       "unit": "days",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "f6",
+       "text": "Payment terms offered",
+       "type": "choice",
+       "options": [
+        "45 days or more",
+        "30 days",
+        "15 days",
+        "Advance payment only"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "f7",
+       "text": "Can you serve both Kathmandu and our Petaling Jaya office if needed?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "f8",
+       "text": "List your three largest corporate clients and the services you provide them.",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "order": 3,
+   "version": 1
+  }
+ },
+ "guides": {
+  "hrms-payroll": {
+   "passMark": 75,
+   "q": {
+    "c1": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must be a registered entity able to issue VAT/PAN invoices."
+    },
+    "c2": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Tax clearance for the latest fiscal year is mandatory."
+    },
+    "c3": {
+     "weight": 3,
+     "op": ">=",
+     "value": 2,
+     "ko": false,
+     "note": "2 years or more shows basic stability."
+    },
+    "c4": {
+     "weight": 5,
+     "points": {
+      "None": 0,
+      "1–4": 2,
+      "5–19": 4,
+      "20 or more": 5
+     },
+     "koOptions": [],
+     "note": "Relevant local track record."
+    },
+    "c5": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": "References are verified before shortlisting."
+    },
+    "c6": {
+     "weight": 5,
+     "expected": "no",
+     "ko": true,
+     "note": "Any yes is a knockout pending legal review."
+    },
+    "c7": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Non-negotiable before any data is shared."
+    },
+    "c8": {
+     "weight": 3,
+     "expected": "yes",
+     "ko": false,
+     "note": "Written policy plus a declaration."
+    },
+    "c9": {
+     "weight": 5,
+     "note": "Specific to Hexamatics' multi-entity staffing, EOR and finance outsourcing model; names concrete outcomes, not generic marketing."
+    },
+    "h1": {
+     "weight": 6,
+     "expected": "yes",
+     "ko": true,
+     "note": "Tax slabs updated each fiscal year before Shrawan payroll."
+    },
+    "h2": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "h3": {
+     "weight": 6,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "h4": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "h5": {
+     "weight": 2,
+     "expected": "no",
+     "ko": false,
+     "note": "IRD certifies billing software only. A 'yes' needs a document; unsupported claims are a credibility flag."
+    },
+    "h6": {
+     "weight": 5,
+     "points": {
+      "Included in subscription, before new fiscal year": 5,
+      "Included, but after the fiscal year starts": 3,
+      "Charged separately": 1,
+      "Client configures manually": 0
+     },
+     "koOptions": [],
+     "note": ""
+    },
+    "h7": {
+     "weight": 5,
+     "points": {
+      "In Nepal": 5,
+      "Outside Nepal, region named in contract": 3,
+      "Not specified": 0
+     },
+     "koOptions": [
+      "Not specified"
+     ],
+     "note": "Hosting location must be named."
+    },
+    "h8": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "h9": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "h10": {
+     "weight": 4,
+     "expected": "no",
+     "ko": true,
+     "note": ""
+    },
+    "h11": {
+     "weight": 8,
+     "points": {
+      "ISO 27001 or SOC 2 Type II": 8,
+      "Third-party penetration test in last 12 months": 5,
+      "Internal testing only": 1,
+      "None": 0
+     },
+     "koOptions": [
+      "None"
+     ],
+     "note": ""
+    },
+    "h12": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "h13": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "h14": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "h15": {
+     "weight": 4,
+     "op": "<=",
+     "value": 72,
+     "ko": true,
+     "note": "72 hours or less."
+    },
+    "h16": {
+     "weight": 3,
+     "op": ">=",
+     "value": 99.5,
+     "ko": false,
+     "note": ""
+    },
+    "h17": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "h18": {
+     "weight": 3,
+     "op": "<=",
+     "value": 12,
+     "ko": false,
+     "note": ""
+    },
+    "h19": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    }
+   },
+   "version": 1
+  },
+  "it-saas": {
+   "passMark": 70,
+   "q": {
+    "c1": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must be a registered entity able to issue VAT/PAN invoices."
+    },
+    "c2": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Tax clearance for the latest fiscal year is mandatory."
+    },
+    "c3": {
+     "weight": 3,
+     "op": ">=",
+     "value": 2,
+     "ko": false,
+     "note": "2 years or more shows basic stability."
+    },
+    "c4": {
+     "weight": 5,
+     "points": {
+      "None": 0,
+      "1–4": 2,
+      "5–19": 4,
+      "20 or more": 5
+     },
+     "koOptions": [],
+     "note": "Relevant local track record."
+    },
+    "c5": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": "References are verified before shortlisting."
+    },
+    "c6": {
+     "weight": 5,
+     "expected": "no",
+     "ko": true,
+     "note": "Any yes is a knockout pending legal review."
+    },
+    "c7": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Non-negotiable before any data is shared."
+    },
+    "c8": {
+     "weight": 3,
+     "expected": "yes",
+     "ko": false,
+     "note": "Written policy plus a declaration."
+    },
+    "c9": {
+     "weight": 5,
+     "note": "Specific to Hexamatics' multi-entity staffing, EOR and finance outsourcing model; names concrete outcomes, not generic marketing."
+    },
+    "i1": {
+     "weight": 8,
+     "points": {
+      "ISO 27001 or SOC 2 Type II": 8,
+      "Third-party penetration test in last 12 months": 5,
+      "Internal testing only": 1,
+      "None": 0
+     },
+     "koOptions": [
+      "None"
+     ],
+     "note": ""
+    },
+    "i2": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "i3": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "i4": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "i5": {
+     "weight": 4,
+     "op": "<=",
+     "value": 72,
+     "ko": true,
+     "note": ""
+    },
+    "i6": {
+     "weight": 3,
+     "expected": "no",
+     "ko": false,
+     "note": "A yes is not automatic failure; ask for the incident report."
+    },
+    "i7": {
+     "weight": 5,
+     "points": {
+      "In Nepal": 5,
+      "Outside Nepal, region named in contract": 3,
+      "Not specified": 0
+     },
+     "koOptions": [
+      "Not specified"
+     ],
+     "note": ""
+    },
+    "i8": {
+     "weight": 3,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "i9": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "i10": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "i11": {
+     "weight": 4,
+     "op": ">=",
+     "value": 99.5,
+     "ko": false,
+     "note": ""
+    },
+    "i12": {
+     "weight": 3,
+     "op": "<=",
+     "value": 8,
+     "ko": false,
+     "note": ""
+    },
+    "i13": {
+     "weight": 4,
+     "points": {
+      "24/7 with named escalation": 4,
+      "Business hours, Nepal time": 3,
+      "Email only": 0
+     },
+     "koOptions": [],
+     "note": ""
+    },
+    "i14": {
+     "weight": 4,
+     "note": "Names specific APIs or connectors and a realistic integration plan."
+    }
+   },
+   "version": 1
+  },
+  "professional": {
+   "passMark": 70,
+   "q": {
+    "c1": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must be a registered entity able to issue VAT/PAN invoices."
+    },
+    "c2": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Tax clearance for the latest fiscal year is mandatory."
+    },
+    "c3": {
+     "weight": 3,
+     "op": ">=",
+     "value": 2,
+     "ko": false,
+     "note": "2 years or more shows basic stability."
+    },
+    "c4": {
+     "weight": 5,
+     "points": {
+      "None": 0,
+      "1–4": 2,
+      "5–19": 4,
+      "20 or more": 5
+     },
+     "koOptions": [],
+     "note": "Relevant local track record."
+    },
+    "c5": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": "References are verified before shortlisting."
+    },
+    "c6": {
+     "weight": 5,
+     "expected": "no",
+     "ko": true,
+     "note": "Any yes is a knockout pending legal review."
+    },
+    "c7": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Non-negotiable before any data is shared."
+    },
+    "c8": {
+     "weight": 3,
+     "expected": "yes",
+     "ko": false,
+     "note": "Written policy plus a declaration."
+    },
+    "c9": {
+     "weight": 5,
+     "note": "Specific to Hexamatics' multi-entity staffing, EOR and finance outsourcing model; names concrete outcomes, not generic marketing."
+    },
+    "p1": {
+     "weight": 6,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "p2": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "p3": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "p4": {
+     "weight": 4,
+     "expected": "no",
+     "ko": true,
+     "note": ""
+    },
+    "p5": {
+     "weight": 4,
+     "op": ">=",
+     "value": 7,
+     "ko": false,
+     "note": ""
+    },
+    "p6": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "p7": {
+     "weight": 6,
+     "note": "Named people with relevant credentials and at least two comparable multi-entity or cross-border engagements."
+    },
+    "p8": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "p9": {
+     "weight": 5,
+     "points": {
+      "Fixed fee with defined scope": 5,
+      "Capped time-and-materials": 3,
+      "Uncapped time-and-materials": 1
+     },
+     "koOptions": [],
+     "note": ""
+    },
+    "p10": {
+     "weight": 3,
+     "op": "<=",
+     "value": 3,
+     "ko": false,
+     "note": ""
+    }
+   },
+   "version": 1
+  },
+  "facilities": {
+   "passMark": 65,
+   "q": {
+    "c1": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must be a registered entity able to issue VAT/PAN invoices."
+    },
+    "c2": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Tax clearance for the latest fiscal year is mandatory."
+    },
+    "c3": {
+     "weight": 3,
+     "op": ">=",
+     "value": 2,
+     "ko": false,
+     "note": "2 years or more shows basic stability."
+    },
+    "c4": {
+     "weight": 5,
+     "points": {
+      "None": 0,
+      "1–4": 2,
+      "5–19": 4,
+      "20 or more": 5
+     },
+     "koOptions": [],
+     "note": "Relevant local track record."
+    },
+    "c5": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": "References are verified before shortlisting."
+    },
+    "c6": {
+     "weight": 5,
+     "expected": "no",
+     "ko": true,
+     "note": "Any yes is a knockout pending legal review."
+    },
+    "c7": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Non-negotiable before any data is shared."
+    },
+    "c8": {
+     "weight": 3,
+     "expected": "yes",
+     "ko": false,
+     "note": "Written policy plus a declaration."
+    },
+    "c9": {
+     "weight": 5,
+     "note": "Specific to Hexamatics' multi-entity staffing, EOR and finance outsourcing model; names concrete outcomes, not generic marketing."
+    },
+    "f1": {
+     "weight": 6,
+     "expected": "yes",
+     "ko": true,
+     "note": "Required for input VAT claims."
+    },
+    "f2": {
+     "weight": 3,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "f3": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": ""
+    },
+    "f4": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "f5": {
+     "weight": 4,
+     "op": "<=",
+     "value": 5,
+     "ko": false,
+     "note": ""
+    },
+    "f6": {
+     "weight": 5,
+     "points": {
+      "45 days or more": 5,
+      "30 days": 4,
+      "15 days": 2,
+      "Advance payment only": 0
+     },
+     "koOptions": [],
+     "note": ""
+    },
+    "f7": {
+     "weight": 2,
+     "expected": "yes",
+     "ko": false,
+     "note": ""
+    },
+    "f8": {
+     "weight": 4,
+     "note": "Named corporate clients of comparable size with relevant services."
+    }
+   },
+   "version": 1
+  }
+ }
+}

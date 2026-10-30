@@ -1,0 +1,74 @@
+/*
+ * HexaQualify design tokens (§10.2).
+ * Brand hues are sampled from the official Hexa wordmark gradient:
+ * magenta #BC0FA5 → violet #6A10CD → blue #0013FF.
+ */
+:root {
+  /* Brand */
+  --hexa-primary: #0013FF;      /* logo blue */
+  --hexa-secondary: #BC0FA5;    /* logo magenta */
+  --hexa-accent: #6A10CD;       /* logo violet, highlights + focus ring */
+  --hexa-gradient: linear-gradient(90deg, #BC0FA5 0%, #6A10CD 52%, #0013FF 100%);
+
+  /* Background: soft aurora mesh behind all glass */
+  --bg-base: #F3F1FB;
+  --bg-blob-1: rgba(188, 15, 165, .26);
+  --bg-blob-2: rgba(0, 19, 255, .20);
+  --bg-blob-3: rgba(106, 16, 205, .22);
+
+  /* Glass surfaces */
+  --glass-bg: rgba(255, 255, 255, .55);
+  --glass-bg-strong: rgba(255, 255, 255, .82);
+  --glass-border: rgba(255, 255, 255, .7);
+  --glass-highlight: rgba(255, 255, 255, .9);
+  --glass-shadow: 0 8px 32px rgba(21, 18, 58, .12);
+  --glass-shadow-hover: 0 14px 40px rgba(21, 18, 58, .18);
+  --glass-blur: 18px;
+  --glass-saturate: 160%;
+  --scrim: rgba(10, 8, 32, .4);
+
+  /* Text */
+  --text: #15123A;
+  --text-muted: #4F4A70;
+  --text-on-brand: #FFFFFF;
+  --line: rgba(21, 18, 58, .12);
+  --brand-tint: rgba(0, 19, 255, .06);
+  --brand-tint-strong: rgba(106, 16, 205, .14);
+  --logo-plate: transparent;
+
+  /* Semantic (independent of brand) */
+  --qualified: #1D7A46;     --qualified-bg: rgba(29, 122, 70, .14);
+  --not-qualified: #B42D2D; --not-qualified-bg: rgba(180, 45, 45, .14);
+  --review: #8A5700;        --review-bg: rgba(154, 98, 0, .16);
+
+  --radius-lg: 20px; --radius-md: 14px; --radius-sm: 10px;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --hexa-accent: #A48CFF;
+  --bg-base: #0A0820;
+  --bg-blob-1: rgba(188, 15, 165, .22);
+  --bg-blob-2: rgba(0, 19, 255, .30);
+  --bg-blob-3: rgba(106, 16, 205, .24);
+  --glass-bg: rgba(24, 20, 56, .55);
+  --glass-bg-strong: rgba(24, 20, 56, .86);
+  --glass-border: rgba(255, 255, 255, .10);
+  --glass-highlight: rgba(255, 255, 255, .14);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, .45);
+  --glass-shadow-hover: 0 14px 40px rgba(0, 0, 0, .55);
+  --scrim: rgba(0, 0, 0, .5);
+  --text: #ECEAF8;
+  --text-muted: #ADA8CC;
+  --line: rgba(255, 255, 255, .12);
+  --brand-tint: rgba(164, 140, 255, .08);
+  --brand-tint-strong: rgba(164, 140, 255, .2);
+  /* The gradient wordmark sits on a light plate in dark mode so it keeps ≥ 4.5:1 contrast unaltered. */
+  --logo-plate: rgba(255, 255, 255, .94);
+  --qualified: #5FD08F; --qualified-bg: rgba(95, 208, 143, .14);
+  --not-qualified: #F08A80; --not-qualified-bg: rgba(240, 138, 128, .14);
+  --review: #F0BB57; --review-bg: rgba(240, 187, 87, .14);
+
+  color-scheme: dark;
+}
