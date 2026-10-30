@@ -1,0 +1,9 @@
+node_modules
+vendor
+public/build
+public/hot
+storage/logs/*
+tests
+.env
+.github
+docker

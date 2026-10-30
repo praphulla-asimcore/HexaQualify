@@ -25,6 +25,9 @@ return [
         'timeout' => 30,
     ],
 
+    // Bearer token for /ops/* endpoints (Vercel Cron sends CRON_SECRET automatically).
+    'cron_secret' => env('CRON_SECRET'),
+
     // Allows the "Sign in as" form on the login page. Never enable in production.
     'dev_login' => (bool) env('HQ_DEV_LOGIN', false),
 

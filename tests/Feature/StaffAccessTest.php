@@ -159,3 +159,13 @@ it('sends security headers', function () {
         ->and($r->headers->get('X-Frame-Options'))->toBe('DENY')
         ->and($r->headers->get('X-Content-Type-Options'))->toBe('nosniff');
 });
+
+it('hides ops endpoints unless the cron secret is presented', function () {
+    config(['hexaqualify.cron_secret' => str_repeat('s', 40)]);
+    $this->get('/ops/cron/daily')->assertNotFound();
+    $this->get('/ops/cron/daily', ['Authorization' => 'Bearer wrong'])->assertNotFound();
+    $this->get('/ops/cron/daily', ['Authorization' => 'Bearer '.str_repeat('s', 40)])->assertOk()->assertJsonStructure(['hexaqualify:expire']);
+
+    config(['hexaqualify.cron_secret' => null]);
+    $this->get('/ops/cron/daily', ['Authorization' => 'Bearer '])->assertNotFound();
+});

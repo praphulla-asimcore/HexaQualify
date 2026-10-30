@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OpsController;
 use App\Http\Controllers\Staff\DashboardController;
 use App\Http\Controllers\Staff\InvitationController;
 use App\Http\Controllers\Staff\QuestionnaireController;
@@ -22,6 +23,12 @@ Route::prefix('v/{token}')->name('vendor.')->where(['token' => '[A-Za-z0-9_-]{40
     Route::post('/submit', [PortalController::class, 'submit'])->middleware('throttle:vendor-otp')->name('submit');
     Route::get('/done', [PortalController::class, 'done'])->name('done');
 });
+
+/*
+| Ops: scheduled jobs and migrations for serverless hosts (CRON_SECRET bearer token).
+*/
+Route::get('/ops/cron/daily', [OpsController::class, 'daily'])->middleware('throttle:10,1');
+Route::post('/ops/migrate', [OpsController::class, 'migrate'])->middleware('throttle:5,1');
 
 /*
 | Staff: Google Workspace SSO, role checked on every route.

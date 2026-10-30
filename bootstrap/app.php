@@ -26,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->alias(['role' => EnsureRole::class]);
         $middleware->redirectGuestsTo(fn () => route('login'));
+        $middleware->validateCsrfTokens(except: ['ops/*']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Friendly Inertia error pages instead of the framework's HTML pages.
