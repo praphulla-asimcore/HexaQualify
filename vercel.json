@@ -5,18 +5,36 @@
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.4",
-      "maxDuration": 30,
+      "maxDuration": 60,
       "excludeFiles": "{node_modules/**,tests/**,docs/**,storage/logs/**,public/build/.vite/**}"
     }
   },
   "routes": [
-    { "src": "/build/(.*)", "dest": "/build/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } },
-    { "src": "/brand/(.*)", "dest": "/brand/$1" },
-    { "src": "/(favicon\\.png|manifest\\.webmanifest|robots\\.txt)", "dest": "/$1" },
-    { "src": "/(.*)", "dest": "/api/index.php" }
+    {
+      "src": "/build/(.*)",
+      "dest": "/build/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "/brand/(.*)",
+      "dest": "/brand/$1"
+    },
+    {
+      "src": "/(favicon\\.png|manifest\\.webmanifest|robots\\.txt)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
   ],
   "crons": [
-    { "path": "/ops/cron/daily", "schedule": "15 3 * * *" }
+    {
+      "path": "/ops/cron/daily",
+      "schedule": "15 3 * * *"
+    }
   ],
   "env": {
     "APP_ENV": "production",
@@ -34,5 +52,8 @@
     "CACHE_STORE": "database",
     "QUEUE_CONNECTION": "sync",
     "DB_CONNECTION": "pgsql"
-  }
+  },
+  "regions": [
+    "sin1"
+  ]
 }
