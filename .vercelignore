@@ -1,9 +1,11 @@
-node_modules
-vendor
-public/build
-public/hot
-storage/logs/*
-tests
-.env
-.github
-docker
+# Anchored to the project root: an unanchored "vendor" also matched
+# app/Http/Controllers/Vendor (case-insensitively) and dropped the vendor portal.
+/node_modules
+/vendor
+/public/build
+/public/hot
+/storage/logs/*
+/tests
+/.env
+/.github
+/docker
