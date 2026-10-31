@@ -36,7 +36,8 @@ class SecurityHeaders
         $response->headers->set('Content-Security-Policy', $csp);
         $response->headers->set('X-Content-Type-Options', 'nosniff');
         $response->headers->set('X-Frame-Options', 'DENY');
-        $response->headers->set('Referrer-Policy', 'no-referrer');
+        // same-origin: Laravel's back() redirects need the referrer; vendor token URLs never leave the site.
+        $response->headers->set('Referrer-Policy', 'same-origin');
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
         $response->headers->set('Cross-Origin-Opener-Policy', 'same-origin');
         if ($request->isSecure()) {

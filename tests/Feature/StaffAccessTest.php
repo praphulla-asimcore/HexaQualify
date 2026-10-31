@@ -158,7 +158,8 @@ it('sends security headers', function () {
     $r = $this->get('/login');
     expect($r->headers->get('Content-Security-Policy'))->toContain("default-src 'self'")->toContain("frame-ancestors 'none'")->not->toContain('unsafe-inline')
         ->and($r->headers->get('X-Frame-Options'))->toBe('DENY')
-        ->and($r->headers->get('X-Content-Type-Options'))->toBe('nosniff');
+        ->and($r->headers->get('X-Content-Type-Options'))->toBe('nosniff')
+        ->and($r->headers->get('Referrer-Policy'))->toBe('same-origin');
 });
 
 it('hides ops endpoints unless the cron secret is presented', function () {
@@ -175,4 +176,15 @@ it('serves ops endpoints without touching sessions, so migrate works on an empty
     config(['hexaqualify.cron_secret' => str_repeat('s', 40), 'session.driver' => 'database']);
     Schema::drop('sessions');
     $this->post('/ops/migrate', [], ['Authorization' => 'Bearer '.str_repeat('s', 40)])->assertOk()->assertJsonStructure(['migrate', 'seed']);
+});
+
+it('returns to the invitations page after inviting, wherever the reviewer came from', function () {
+    $reviewer = staff('reviewer');
+    $q = Questionnaire::where('slug', 'it-saas')->first();
+    $data = ['vendor_company' => 'Acme', 'contact_name' => 'A', 'contact_email' => 'a@acme.example', 'questionnaire_id' => $q->id, 'expiry_days' => 14];
+
+    $this->actingAs($reviewer)->from("/questionnaires/{$q->id}/edit")->post('/invitations', $data)
+        ->assertRedirect('/invitations')->assertSessionHas('link');
+    $this->actingAs($reviewer)->from("/questionnaires/{$q->id}/edit")->post('/invitations', $data)
+        ->assertRedirect('/invitations')->assertSessionHasErrors('contact_email');
 });

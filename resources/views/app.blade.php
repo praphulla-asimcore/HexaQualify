@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="referrer" content="no-referrer">
+    <meta name="referrer" content="same-origin">
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#F3F1FB" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0A0820" media="(prefers-color-scheme: dark)">

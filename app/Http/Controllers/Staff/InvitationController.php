@@ -82,13 +82,13 @@ class InvitationController extends Controller
         $questionnaire = Questionnaire::with('latestVersion')->findOrFail($data['questionnaire_id']);
 
         if (! ($data['confirm_duplicate'] ?? false) && $this->invitations->duplicates($data['contact_email'], $questionnaire) > 0) {
-            return back()->withErrors(['contact_email' => 'This vendor email already has an open invitation for this questionnaire. Tick "Send anyway" to continue.'])
+            return redirect()->route('invitations.index')->withInput()->withErrors(['contact_email' => 'This vendor email already has an open invitation for this questionnaire. Tick "Send anyway" to continue.'])
                 ->with('duplicate', true);
         }
 
         [, $plain] = $this->invitations->create($data, $questionnaire, $request->user());
 
-        return back()->with('success', 'Invitation sent to '.$data['contact_email'].'.')->with('link', InvitationService::link($plain));
+        return redirect()->route('invitations.index')->with('success', 'Invitation sent to '.$data['contact_email'].'.')->with('link', InvitationService::link($plain));
     }
 
     public function resend(Invitation $invitation)
