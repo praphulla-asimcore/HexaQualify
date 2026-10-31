@@ -35,6 +35,7 @@
   --brand-tint: rgba(0, 19, 255, .06);
   --brand-tint-strong: rgba(106, 16, 205, .14);
   --logo-plate: transparent;
+  --logo-glow: none;
 
   /* Semantic (independent of brand) */
   --qualified: #1D7A46;     --qualified-bg: rgba(29, 122, 70, .14);
@@ -64,8 +65,9 @@
   --line: rgba(255, 255, 255, .12);
   --brand-tint: rgba(164, 140, 255, .08);
   --brand-tint-strong: rgba(164, 140, 255, .2);
-  /* The gradient wordmark sits on a light plate in dark mode so it keeps ≥ 4.5:1 contrast unaltered. */
-  --logo-plate: rgba(255, 255, 255, .94);
+  /* No plate in dark mode: a soft halo lifts the blue end of the wordmark off the navy without recolouring it. */
+  --logo-plate: transparent;
+  --logo-glow: drop-shadow(0 0 1px rgba(255, 255, 255, .55)) drop-shadow(0 0 10px rgba(164, 140, 255, .45));
   --qualified: #5FD08F; --qualified-bg: rgba(95, 208, 143, .14);
   --not-qualified: #F08A80; --not-qualified-bg: rgba(240, 138, 128, .14);
   --review: #F0BB57; --review-bg: rgba(240, 187, 87, .14);

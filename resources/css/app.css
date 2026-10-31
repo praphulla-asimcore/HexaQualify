@@ -114,6 +114,7 @@
   .lift { transition: transform .2s ease-out, box-shadow .2s ease-out; }
   .lift:hover { transform: translateY(-2px); box-shadow: var(--glass-shadow-hover), inset 0 1px 0 var(--glass-highlight); }
   .logo-plate { background: var(--logo-plate); border-radius: 10px; }
+  .logo-plate img { filter: var(--logo-glow); }
   .brand-line { height: 2px; background: var(--hexa-gradient); border-radius: 2px; }
 }
 
