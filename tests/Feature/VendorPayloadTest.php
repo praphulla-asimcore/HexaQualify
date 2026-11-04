@@ -23,7 +23,7 @@ function assertNoScoringData(string $body): void
 beforeEach(fn () => Mail::fake());
 
 it('never sends scoring data to any vendor endpoint', function () {
-    foreach (['hrms-payroll', 'it-saas', 'professional', 'facilities'] as $i => $slug) {
+    foreach (['hrms-payroll', 'it-saas', 'professional', 'facilities', 'recruitment-staffing'] as $i => $slug) {
         [$inv, $token] = invite($slug, ['contact_email' => "v$i@vendor.example", 'note' => 'internal note: low priority']);
         [$structure, $guide] = starter($slug);
         $inertia = ['X-Inertia' => 'true', 'X-Inertia-Version' => ''];

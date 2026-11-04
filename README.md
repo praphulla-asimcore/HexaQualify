@@ -14,7 +14,7 @@ Laravel 12 · PHP 8.3 · PostgreSQL 16 · Redis queues · Inertia + Vue 3 · Tai
 composer install && npm ci && npm run build
 cp .env.example .env && php artisan key:generate
 # set DB_* for a local Postgres, then:
-php artisan migrate --seed                         # 4 starter questionnaires (Appendix B)
+php artisan migrate --seed                         # 5 starter questionnaires (Appendix B)
 php artisan db:seed --class=DemoSeeder             # optional demo staff + vendors (not for production)
 php artisan serve
 ```

@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Services\QuestionnaireService;
 use Illuminate\Database\Seeder;
 
-/** Seeds the common baseline block and the four starter questionnaires (Appendix B) as version 1. */
+/** Seeds the common baseline block and the five starter questionnaires (Appendix B) as version 1. */
 class DatabaseSeeder extends Seeder
 {
     public function run(QuestionnaireService $service): void

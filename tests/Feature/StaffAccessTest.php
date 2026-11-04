@@ -5,6 +5,8 @@ use App\Models\AuditLog;
 use App\Models\Invitation;
 use App\Models\Questionnaire;
 use App\Models\User;
+use App\Services\QuestionnaireService;
+use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Laravel\Socialite\Facades\Socialite;
@@ -38,6 +40,26 @@ it('hides the scoring guide and breakdown from viewers', function () {
     $this->actingAs($viewer)->get("/responses/{$response->id}")->assertOk()
         ->assertInertia(fn ($p) => $p->where('guide', null)->where('breakdown', null)->where('can.review', false));
     $this->actingAs($viewer)->get('/questionnaires')->assertInertia(fn ($p) => $p->where('items.0.pass_mark', null));
+});
+
+it('seeds the recruitment questionnaire for review and invitations idempotently', function () {
+    $admin = staff('admin');
+    $questionnaire = Questionnaire::where('slug', 'recruitment-staffing')->firstOrFail();
+    $version = $questionnaire->latestVersion;
+
+    expect(count($version->questions()))->toBe(49)
+        ->and($version->pass_mark)->toEqual(70)
+        ->and(array_sum(array_column($version->guide->guide_json['q'], 'weight')))->toEqual(112);
+
+    $this->actingAs($admin)->get('/questionnaires')->assertInertia(fn ($page) => $page
+        ->where('items', fn ($items) => collect($items)->contains(fn ($item) => $item['slug'] === 'recruitment-staffing')));
+    $this->actingAs($admin)->get('/invitations')->assertInertia(fn ($page) => $page
+        ->where('questionnaires', fn ($items) => collect($items)->contains(fn ($item) => $item['id'] === $questionnaire->id)));
+
+    (new DatabaseSeeder)->run(app(QuestionnaireService::class));
+
+    expect(Questionnaire::where('slug', 'recruitment-staffing')->count())->toBe(1)
+        ->and($questionnaire->versions()->count())->toBe(1);
 });
 
 it('warns about duplicate open invitations', function () {
