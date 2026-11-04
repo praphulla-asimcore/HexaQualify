@@ -230,7 +230,8 @@ These are mandatory. The tool holds vendor company data and staff identities, an
 
 **Data protection**
 - TLS 1.2+ everywhere, with HSTS. Encryption at rest for the database and object storage.
-- Individual Privacy Act 2075 (Nepal): collect only what is needed, show a privacy notice on the vendor portal, and give a defined retention period (default 3 years after decision, configurable). Run a purge job.
+- Individual Privacy Act 2075 (Nepal): collect only what is needed, show a privacy notice on the vendor portal, and give a defined retention period (default 3 years after decision, configurable). Run a purge job. Confirm obligations for candidate data with qualified counsel based on the candidates', parties' and processing locations; do not assume overseas hosting is automatically prohibited.
+- Recruitment partners: do not request or exchange real candidate CVs during vendor qualification. Before any role-specific candidate data is shared, complete privacy/security review, document data flows and subprocessors, and execute appropriate written data-processing and confidentiality terms.
 - Hosting region documented. If hosted in Nepal, use a provider listed under the Data Center and Cloud Service Directives 2081.
 - Uploaded files: type and size validation, antivirus scan (ClamAV) before reviewer access, private bucket, short-lived signed URLs.
 
@@ -461,7 +462,7 @@ Emails cannot use backdrop blur. Use a solid white card on a light brand-tinted 
 
 | Phase | Scope |
 |---|---|
-| **1 – MVP** | Staff SSO, questionnaire builder (yesno, choice, number, text), versioning, invitations with token + OTP, vendor portal with autosave, scoring engine, review + decision + override, dashboard, audit log, email notifications, seed of the four starter questionnaires (Appendix B). |
+| **1 – MVP** | Staff SSO, questionnaire builder (yesno, choice, number, text), versioning, invitations with token + OTP, vendor portal with autosave, scoring engine, review + decision + override, dashboard, audit log, email notifications, seed of the five starter questionnaires (Appendix B). |
 | **2** | File/evidence questions with AV scanning, request clarification loop, CSV bulk invite, XLSX export, reminder emails, AI-suggested scoring. |
 | **3** | Vendor master record (repeat vendors reuse company details), periodic re-screening, analytics by category, Slack/Teams notification of submissions. |
 
@@ -475,7 +476,7 @@ Emails cannot use backdrop blur. Use a solid white card on a light brand-tinted 
 
 ## Appendix A — Starter questionnaires and scoring guides
 
-Four categories ship as seeds. All of them include the common **Company and integrity** section (c1–c9). Knockout items are must-pass. Points, notes and knockout rules are hidden from vendors.
+Five categories ship as seeds. All of them include the common **Company and integrity** section (c1–c9). Knockout items are must-pass. Points, notes and knockout rules are hidden from vendors.
 
 ### HR & payroll software (`hrms-payroll`)
 
@@ -667,6 +668,57 @@ Office supplies, IT hardware, maintenance, cleaning, security, catering and tran
 | f6 | Payment terms offered | choice | 45 days or more = 5; 30 days = 4; 15 days = 2; Advance payment only = 0 | 5 |  |
 | f7 | Can you serve both Kathmandu and our Petaling Jaya office if needed? | yesno | Expected **Yes** | 2 |  |
 | f8 | List your three largest corporate clients and the services you provide them. | text | Reviewer-scored (AI suggestion) — *Named corporate clients of comparable size with relevant services.* | 4 |  |
+
+### Recruitment and staffing partner (`recruitment-staffing`)
+
+**Category:** Recruitment and staffing · **Pass mark:** 70% · **Max points:** 112
+
+Recruitment firms that source, screen and coordinate candidates. Includes the common **Company and integrity** section (c1–c9). The questionnaire assesses the vendor's process only; do not request candidate names or CVs during this qualification. A disclosed non-Nepal hosting location is not automatically a failure: review the applicable legal requirements and the complete data flow before candidate data is shared.
+
+| ID | Question | Type | Scoring rule | Max pts | Knockout |
+|---|---|---|---|---|---|
+| r1 | Which services can you provide: sourcing, screening, interview coordination, offer support, joining follow-up, or contract staffing? | text | Reviewer-scored (AI suggestion) — *Clear service scope and evidence of delivery.* | 4 |  |
+| r2 | Can you provide the specific recruitment services required for each search? | yesno | Expected **Yes** | 0 | Yes |
+| r3 | Which locations and work arrangements do you cover (onsite, hybrid, remote)? | text | Reviewer-scored — *Coverage matches the roles in scope.* | 2 |  |
+| r4 | Can you meet the location and work-arrangement requirements specified for each search? | yesno | Expected **Yes** | 0 | Yes, when requirements cannot be met |
+| r5 | Which role families and seniority levels do you regularly recruit for? | text | Reviewer-scored — *Relevant, demonstrated recruiting coverage.* | 3 |  |
+| r6 | Can you recruit for all role families and seniority levels specified for each search? | yesno | Expected **Yes** | 0 | Yes |
+| r7 | Who will be our account owner and day-to-day contact? | text | Named accountable contact and backup. | 1 |  |
+| r8 | What information do you need from us to open a role (job description, must-have skills, experience, compensation range, location, urgency, interview stages)? | text | Reviewer-scored — *Intake captures the requirements needed to source accurately.* | 2 |  |
+| r9 | How do you validate skills, experience, communication, references, and candidate availability? | text | Reviewer-scored — *Specific, role-appropriate screening and verification methods.* | 4 |  |
+| r10 | What screening notes and candidate details will accompany each shortlist? | text | Reviewer-scored — *Useful, job-related notes without unnecessary personal data.* | 3 |  |
+| r11 | How do you confirm salary expectations, notice period, competing offers, and willingness to join before submitting a candidate? | text | Reviewer-scored — *All listed factors are checked and recorded before submission.* | 3 |  |
+| r12 | How do you prevent duplicate submissions and handle candidates already known to us? | text | Reviewer-scored — *Clear prior-submission checks and attribution process.* | 2 |  |
+| r13 | What is your typical time to first shortlist and expected shortlist size by role type? | text | Reviewer-scored — *Realistic, role-specific delivery estimates.* | 3 |  |
+| r14 | How frequently will you share progress, pipeline status, and reasons candidates drop out? | text | Reviewer-scored — *Regular, actionable reporting.* | 2 |  |
+| r15 | How do you coordinate interviews, collect feedback, and manage candidate follow-ups? | text | Reviewer-scored — *Clear ownership and timely coordination.* | 3 |  |
+| r16 | What happens if a role is paused, changed, or cancelled? | text | Reviewer-scored — *Clear process and cost implications.* | 1 |  |
+| r17 | How is your fee calculated, when is it invoiced, and what event triggers payment? | text | Reviewer-scored — *Complete, understandable fee and payment terms.* | 4 |  |
+| r18 | Will you confirm in writing that there is no upfront recruitment fee and provide all terms for approval before a search begins? | yesno | Expected **Yes** — *Must match the advertised no-upfront-fee model and be agreed before work begins.* | 0 | Yes |
+| r19 | Are there minimum fees, taxes, exclusivity requirements, or other charges? List them. | text | Reviewer-scored — *Complete disclosure; terms must be acceptable before assignment.* | 2 |  |
+| r20 | Will you disclose all fees, taxes, exclusivity terms and other charges in writing before any role is assigned? | yesno | Expected **Yes** | 0 | Yes |
+| r21 | What replacement or refund terms apply if a hire leaves or does not join, and for how long? | text | Reviewer-scored — *Clear, written terms suitable for negotiation.* | 3 |  |
+| r22 | How do you handle a candidate submitted for multiple roles or hired later through another channel? | text | Reviewer-scored — *Clear, fair candidate attribution rules.* | 2 |  |
+| r23 | Will you sign written data-processing and confidentiality terms, suitable to the parties' roles and approved after legal review, before any CV is shared? | yesno | Expected **Yes** | 0 | Yes |
+| r24 | What notice do candidates receive, how do you record permission to collect and disclose their CV to us, and how can we verify it for each submission? | text | Reviewer-scored — *Documented notice and permission for the stated purpose and recipient.* | 3 |  |
+| r25 | What role will each party have in handling candidate data, and what privacy requirements do you believe apply? | text | Reviewer-scored — *Clear responsibility split; legal conclusions require qualified review.* | 2 |  |
+| r26 | Where are CVs and related records hosted, backed up, and accessed from? Identify providers, subprocessors, and countries of storage or access. | text | Reviewer-scored — *Complete, specific data-flow disclosure; non-Nepal hosting is assessed, not presumed unacceptable.* | 4 |  |
+| r27 | Will you disclose all storage, backup, support-access, subprocessor and transfer locations before any CV is shared? | yesno | Expected **Yes** | 0 | Yes |
+| r28 | What safeguards protect candidate records (e.g. access restrictions, authentication, encryption and access logging)? Provide relevant evidence. | text | Reviewer-scored — *Specific, verifiable safeguards; acceptance requires privacy/security review.* | 4 |  |
+| r29 | Will you provide evidence of your safeguards and allow privacy/security review before candidate CVs are shared? | yesno | Expected **Yes** — *A yes permits review; it is not itself approval of the controls.* | 0 | Yes |
+| r30 | How do you handle suspected or confirmed data incidents, and how will you notify us and assist within an agreed timeframe? | text | Reviewer-scored — *Documented response and cooperation process.* | 3 |  |
+| r31 | Will you accept a contractually agreed incident-notification timeframe and cooperate with response and investigation? | yesno | Expected **Yes** | 0 | Yes |
+| r32 | What are your retention periods, and how do you handle deletion from backups and subprocessors? | text | Reviewer-scored — *Defined, purpose-limited retention and deletion process.* | 3 |  |
+| r33 | Will you securely return or delete candidate records on request or at contract end, including from subprocessors and backups subject to disclosed backup limits? | yesno | Expected **Yes** | 0 | Yes |
+| r34 | How will you help handle candidate requests to access, correct, or delete their information? | text | Reviewer-scored — *Clear responsibilities and escalation process.* | 2 |  |
+| r35 | Will you assist with candidate access, correction, and deletion requests within agreed timelines? | yesno | Expected **Yes** | 0 | Yes |
+| r36 | Will you minimize candidate data and avoid collecting or sharing sensitive personal details unless necessary, authorized, and legally reviewed? | yesno | Expected **Yes** | 0 | Yes |
+| r37 | Can you provide client references and sample anonymized screening notes? | text | Reviewer-scored — *Relevant references and useful, anonymized evidence.* | 3 |  |
+| r38 | Are there conflicts of interest, subcontractors, or other third parties involved? Disclose them and explain how you manage them. | text | Reviewer-scored — *Material arrangements are disclosed and manageable.* | 2 |  |
+| r39 | Will you disclose conflicts, subcontractors, and other third parties before any engagement? | yesno | Expected **Yes** | 0 | Yes |
+| r40 | What other relevant policies, registrations, privacy/security evidence, or limitations should we review? | text | Reviewer-scored — *Relevant supporting documents and limitations are identified.* | 2 |  |
+
+Any knockout failure stops onboarding until resolved. A positive answer about hosting or security is not a legal or security approval. Qualified counsel and the privacy/security reviewers must assess the applicable jurisdictions, contract terms, and disclosed data flows before any candidate CV is shared.
 
 ---
 
@@ -1482,6 +1534,395 @@ Office supplies, IT hardware, maintenance, cleaning, security, catering and tran
    ],
    "order": 3,
    "version": 1
+  },
+  "recruitment-staffing": {
+   "name": "Recruitment and staffing partner",
+   "category": "Recruitment and staffing",
+   "description": "Recruitment firms that source, screen and coordinate candidates. Do not submit real candidate personal data during qualification.",
+   "sections": [
+    {
+     "title": "Company and integrity",
+     "questions": [
+      {
+       "id": "c1",
+       "text": "Is your company registered in Nepal with a valid PAN/VAT number?",
+       "type": "yesno",
+       "help": "Foreign vendors: answer for your contracting entity and explain below.",
+       "required": true
+      },
+      {
+       "id": "c2",
+       "text": "Can you provide your latest tax clearance certificate on request?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c3",
+       "text": "How many years has your company been operating?",
+       "type": "number",
+       "unit": "years",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c4",
+       "text": "How many active clients of similar size do you serve in Nepal?",
+       "type": "choice",
+       "options": [
+        "None",
+        "1–4",
+        "5–19",
+        "20 or more"
+       ],
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c5",
+       "text": "Can you share at least two client references we may contact?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c6",
+       "text": "Has your company faced litigation, blacklisting or regulatory action in the last 3 years?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c7",
+       "text": "Will you sign Hexamatics' NDA before receiving any confidential information?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c8",
+       "text": "Do you have an anti-bribery and conflict-of-interest policy, and will you declare any relationship with Hexamatics staff?",
+       "type": "yesno",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "c9",
+       "text": "Briefly describe what you offer and why it fits Hexamatics.",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Recruitment capability and screening",
+     "questions": [
+      {
+       "id": "r1",
+       "text": "Which services can you provide: sourcing, screening, interview coordination, offer support, joining follow-up, or contract staffing?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r2",
+       "text": "Can you provide the specific recruitment services required for each search?",
+       "type": "yesno",
+       "help": "A No is a knockout.",
+       "required": true
+      },
+      {
+       "id": "r3",
+       "text": "Which locations and work arrangements do you cover (onsite, hybrid, remote)?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r4",
+       "text": "Can you meet the location and work-arrangement requirements specified for each search?",
+       "type": "yesno",
+       "help": "A No is a knockout when the required location or work arrangement cannot be served.",
+       "required": true
+      },
+      {
+       "id": "r5",
+       "text": "Which role families and seniority levels do you regularly recruit for?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r6",
+       "text": "Can you recruit for all role families and seniority levels specified for each search?",
+       "type": "yesno",
+       "help": "A No is a knockout.",
+       "required": true
+      },
+      {
+       "id": "r7",
+       "text": "Who will be our account owner and day-to-day contact?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r8",
+       "text": "What information do you need from us to open a role (job description, must-have skills, experience, compensation range, location, urgency, interview stages)?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r9",
+       "text": "How do you validate skills, experience, communication, references, and candidate availability?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r10",
+       "text": "What screening notes and candidate details will accompany each shortlist?",
+       "type": "text",
+       "help": "Describe the fields only. Do not include real candidate names or personal data.",
+       "required": true
+      },
+      {
+       "id": "r11",
+       "text": "How do you confirm salary expectations, notice period, competing offers, and willingness to join before submitting a candidate?",
+       "type": "text",
+       "help": "Describe your process only. Do not include real candidate details.",
+       "required": true
+      },
+      {
+       "id": "r12",
+       "text": "How do you prevent duplicate submissions and handle candidates already known to us?",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Delivery and service levels",
+     "questions": [
+      {
+       "id": "r13",
+       "text": "What is your typical time to first shortlist and expected shortlist size by role type?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r14",
+       "text": "How frequently will you share progress, pipeline status, and reasons candidates drop out?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r15",
+       "text": "How do you coordinate interviews, collect feedback, and manage candidate follow-ups?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r16",
+       "text": "What happens if a role is paused, changed, or cancelled?",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Commercial terms",
+     "questions": [
+      {
+       "id": "r17",
+       "text": "How is your fee calculated, when is it invoiced, and what event triggers payment?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r18",
+       "text": "Will you confirm in writing that there is no upfront recruitment fee and provide all terms for approval before a search begins?",
+       "type": "yesno",
+       "help": "A No is a knockout; this must match your advertised no-upfront-fee model.",
+       "required": true
+      },
+      {
+       "id": "r19",
+       "text": "Are there minimum fees, taxes, exclusivity requirements, or other charges? List them.",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r20",
+       "text": "Will you disclose all fees, taxes, exclusivity terms and other charges in writing before any role is assigned?",
+       "type": "yesno",
+       "help": "A No is a knockout.",
+       "required": true
+      },
+      {
+       "id": "r21",
+       "text": "What replacement or refund terms apply if a hire leaves or does not join, and for how long?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r22",
+       "text": "How do you handle a candidate submitted for multiple roles or hired later through another channel?",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Candidate privacy, data protection and hosting",
+     "questions": [
+      {
+       "id": "r23",
+       "text": "Will you sign written data-processing and confidentiality terms, suitable to the parties' roles and approved after legal review, before any CV is shared?",
+       "type": "yesno",
+       "help": "A No is a knockout. Do not share real candidate CVs before written terms are approved.",
+       "required": true
+      },
+      {
+       "id": "r24",
+       "text": "What notice do candidates receive, how do you record permission to collect and disclose their CV to us, and how can we verify it for each submission?",
+       "type": "text",
+       "help": "Describe your process only. Do not include real candidate names or personal data.",
+       "required": true
+      },
+      {
+       "id": "r25",
+       "text": "What role will each party have in handling candidate data, and what privacy requirements do you believe apply?",
+       "type": "text",
+       "help": "Legal conclusions must be confirmed by qualified counsel.",
+       "required": true
+      },
+      {
+       "id": "r26",
+       "text": "Where are CVs and related records hosted, backed up, and accessed from? Identify providers, subprocessors, and countries of storage or access.",
+       "type": "text",
+       "help": "List locations and providers only; do not include candidate data.",
+       "required": true
+      },
+      {
+       "id": "r27",
+       "text": "Will you disclose all storage, backup, support-access, subprocessor and transfer locations before any CV is shared?",
+       "type": "yesno",
+       "help": "A No is a knockout. Non-Nepal hosting is not automatically disqualifying but must be reviewed.",
+       "required": true
+      },
+      {
+       "id": "r28",
+       "text": "What safeguards protect candidate records (e.g. access restrictions, authentication, encryption and access logging)? Provide relevant evidence.",
+       "type": "text",
+       "help": "Describe controls and evidence only; do not include candidate data.",
+       "required": true
+      },
+      {
+       "id": "r29",
+       "text": "Will you provide evidence of your safeguards and allow privacy/security review before candidate CVs are shared?",
+       "type": "yesno",
+       "help": "A No is a knockout. A Yes permits review; it is not itself approval of the controls.",
+       "required": true
+      },
+      {
+       "id": "r30",
+       "text": "How do you handle suspected or confirmed data incidents, and how will you notify us and assist within an agreed timeframe?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r31",
+       "text": "Will you accept a contractually agreed incident-notification timeframe and cooperate with response and investigation?",
+       "type": "yesno",
+       "help": "A No is a knockout.",
+       "required": true
+      },
+      {
+       "id": "r32",
+       "text": "What are your retention periods, and how do you handle deletion from backups and subprocessors?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r33",
+       "text": "Will you securely return or delete candidate records on request or at contract end, including from subprocessors and backups subject to disclosed backup limits?",
+       "type": "yesno",
+       "help": "A No is a knockout.",
+       "required": true
+      },
+      {
+       "id": "r34",
+       "text": "How will you help handle candidate requests to access, correct, or delete their information?",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r35",
+       "text": "Will you assist with candidate access, correction, and deletion requests within agreed timelines?",
+       "type": "yesno",
+       "help": "A No is a knockout.",
+       "required": true
+      },
+      {
+       "id": "r36",
+       "text": "Will you minimize candidate data and avoid collecting or sharing sensitive personal details unless necessary, authorized, and legally reviewed?",
+       "type": "yesno",
+       "help": "A No is a knockout.",
+       "required": true
+      }
+     ]
+    },
+    {
+     "title": "Verification and disclosures",
+     "questions": [
+      {
+       "id": "r37",
+       "text": "Can you provide client references and sample anonymized screening notes?",
+       "type": "text",
+       "help": "Do not provide identifiable candidate records.",
+       "required": true
+      },
+      {
+       "id": "r38",
+       "text": "Are there conflicts of interest, subcontractors, or other third parties involved? Disclose them and explain how you manage them.",
+       "type": "text",
+       "help": "",
+       "required": true
+      },
+      {
+       "id": "r39",
+       "text": "Will you disclose conflicts, subcontractors, and other third parties before any engagement?",
+       "type": "yesno",
+       "help": "A No is a knockout. Disclosed arrangements are assessed, not automatically rejected.",
+       "required": true
+      },
+      {
+       "id": "r40",
+       "text": "What other relevant policies, registrations, privacy/security evidence, or limitations should we review?",
+       "type": "text",
+       "help": "",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "order": 4,
+   "version": 1
   }
  },
  "guides": {
@@ -2090,6 +2531,256 @@ Office supplies, IT hardware, maintenance, cleaning, security, catering and tran
     "f8": {
      "weight": 4,
      "note": "Named corporate clients of comparable size with relevant services."
+    }
+   },
+   "version": 1
+  },
+  "recruitment-staffing": {
+   "passMark": 70,
+   "q": {
+    "c1": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must be a registered entity able to issue VAT/PAN invoices."
+    },
+    "c2": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Tax clearance for the latest fiscal year is mandatory."
+    },
+    "c3": {
+     "weight": 3,
+     "op": ">=",
+     "value": 2,
+     "ko": false,
+     "note": "2 years or more shows basic stability."
+    },
+    "c4": {
+     "weight": 5,
+     "points": {
+      "None": 0,
+      "1–4": 2,
+      "5–19": 4,
+      "20 or more": 5
+     },
+     "koOptions": [],
+     "note": "Relevant local track record."
+    },
+    "c5": {
+     "weight": 4,
+     "expected": "yes",
+     "ko": false,
+     "note": "References are verified before shortlisting."
+    },
+    "c6": {
+     "weight": 5,
+     "expected": "no",
+     "ko": true,
+     "note": "Any yes is a knockout pending legal review."
+    },
+    "c7": {
+     "weight": 5,
+     "expected": "yes",
+     "ko": true,
+     "note": "Non-negotiable before any data is shared."
+    },
+    "c8": {
+     "weight": 3,
+     "expected": "yes",
+     "ko": false,
+     "note": "Written policy plus a declaration."
+    },
+    "c9": {
+     "weight": 5,
+     "note": "Specific to Hexamatics' multi-entity staffing, EOR and finance outsourcing model; names concrete outcomes, not generic marketing."
+    },
+    "r1": {
+     "weight": 4,
+     "note": "Clear service scope and evidence of delivery."
+    },
+    "r2": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must support the recruitment services required for each search."
+    },
+    "r3": {
+     "weight": 2,
+     "note": "Coverage matches the roles in scope."
+    },
+    "r4": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Knockout only when the required location or work arrangement cannot be served."
+    },
+    "r5": {
+     "weight": 3,
+     "note": "Relevant, demonstrated recruiting coverage."
+    },
+    "r6": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must recruit for all role families and seniority levels required for each search."
+    },
+    "r7": {
+     "weight": 1,
+     "note": "Named accountable contact and backup."
+    },
+    "r8": {
+     "weight": 2,
+     "note": "Intake captures the requirements needed to source accurately."
+    },
+    "r9": {
+     "weight": 4,
+     "note": "Specific, role-appropriate screening and verification methods."
+    },
+    "r10": {
+     "weight": 3,
+     "note": "Useful, job-related notes without unnecessary personal data."
+    },
+    "r11": {
+     "weight": 3,
+     "note": "All listed factors are checked and recorded before submission."
+    },
+    "r12": {
+     "weight": 2,
+     "note": "Clear prior-submission checks and attribution process."
+    },
+    "r13": {
+     "weight": 3,
+     "note": "Realistic, role-specific delivery estimates."
+    },
+    "r14": {
+     "weight": 2,
+     "note": "Regular, actionable reporting."
+    },
+    "r15": {
+     "weight": 3,
+     "note": "Clear ownership and timely coordination."
+    },
+    "r16": {
+     "weight": 1,
+     "note": "Clear process and cost implications."
+    },
+    "r17": {
+     "weight": 4,
+     "note": "Complete, understandable fee and payment terms."
+    },
+    "r18": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must match the advertised no-upfront-fee model and be agreed before work begins."
+    },
+    "r19": {
+     "weight": 2,
+     "note": "Complete disclosure; terms must be acceptable before assignment."
+    },
+    "r20": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "All fees and other charges must be disclosed in writing before assignment."
+    },
+    "r21": {
+     "weight": 3,
+     "note": "Clear, written terms suitable for negotiation."
+    },
+    "r22": {
+     "weight": 2,
+     "note": "Clear, fair candidate attribution rules."
+    },
+    "r23": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Written terms must be approved before any candidate CV is shared."
+    },
+    "r24": {
+     "weight": 3,
+     "note": "Documented notice and permission for the stated purpose and recipient."
+    },
+    "r25": {
+     "weight": 2,
+     "note": "Clear responsibility split; legal conclusions require qualified review."
+    },
+    "r26": {
+     "weight": 4,
+     "note": "Complete, specific data-flow disclosure; non-Nepal hosting is assessed, not presumed unacceptable."
+    },
+    "r27": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Disclose all storage, backup, access and transfer locations before CV sharing."
+    },
+    "r28": {
+     "weight": 4,
+     "note": "Specific, verifiable safeguards; acceptance requires privacy/security review."
+    },
+    "r29": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Evidence and review are required before candidate CVs are shared; a yes is not approval."
+    },
+    "r30": {
+     "weight": 3,
+     "note": "Documented response and cooperation process."
+    },
+    "r31": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "An agreed notification timeframe and cooperation are required."
+    },
+    "r32": {
+     "weight": 3,
+     "note": "Defined, purpose-limited retention and deletion process."
+    },
+    "r33": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Must return or securely delete data under the agreed terms."
+    },
+    "r34": {
+     "weight": 2,
+     "note": "Clear responsibilities and escalation process."
+    },
+    "r35": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Candidate access, correction and deletion requests must be supported."
+    },
+    "r36": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Collect or share only necessary candidate data; sensitive details require authorization and legal review."
+    },
+    "r37": {
+     "weight": 3,
+     "note": "Relevant references and useful, anonymized evidence."
+    },
+    "r38": {
+     "weight": 2,
+     "note": "Material arrangements are disclosed and manageable."
+    },
+    "r39": {
+     "weight": 0,
+     "expected": "yes",
+     "ko": true,
+     "note": "Conflicts and third-party arrangements must be disclosed before engagement."
+    },
+    "r40": {
+     "weight": 2,
+     "note": "Relevant supporting documents and limitations are identified."
     }
    },
    "version": 1
